@@ -1,7 +1,6 @@
 import time
 
 import matplotlib.pyplot as plt
-import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm # 引入字体管理模块
 import numpy as np
 import streamlit as st
