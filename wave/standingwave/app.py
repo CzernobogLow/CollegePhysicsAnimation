@@ -6,15 +6,20 @@ import matplotlib.font_manager as fm # 引入字体管理模块
 import numpy as np
 import streamlit as st
 
-# --- 核心修改开始 ---
-# 获取当前文件所在的文件夹路径，确保能找到字体文件
-import os
+# --- 核心修改 (修正版) ---
+# 1. 获取字体路径
 current_dir = os.path.dirname(os.path.abspath(__file__))
-font_path = os.path.join(current_dir, 'SimHei.ttf') # 确保文件名和你的文件完全一致
+font_path = os.path.join(current_dir, 'SimHei.ttf')
 
-# 注册字体
-font_prop = fm.FontProperties(fname=font_path)
-plt.rcParams['font.family'] = font_prop.get_name() # 全局设置字体
+# 2. 关键一步：使用 addfont 直接把文件注册到 Matplotlib
+# 这样 Matplotlib 就知道 "SimHei" 对应这个文件了
+fm.fontManager.addfont(font_path)
+
+# 3. 设置全局字体为 SimHei
+plt.rcParams['font.family'] = ['SimHei'] 
+
+# 4. 解决负号显示为方块的问题
+plt.rcParams['axes.unicode_minus'] = False 
 # --- 核心修改结束 ---
 
 st.set_page_config(page_title="驻波演示", layout="wide")
