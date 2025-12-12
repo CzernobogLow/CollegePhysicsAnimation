@@ -1,9 +1,21 @@
 import time
 
 import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm # 引入字体管理模块
 import numpy as np
 import streamlit as st
 
+# --- 核心修改开始 ---
+# 获取当前文件所在的文件夹路径，确保能找到字体文件
+import os
+current_dir = os.path.dirname(os.path.abspath(__file__))
+font_path = os.path.join(current_dir, 'SimHei.ttf') # 确保文件名和你的文件完全一致
+
+# 注册字体
+font_prop = fm.FontProperties(fname=font_path)
+plt.rcParams['font.family'] = font_prop.get_name() # 全局设置字体
+# --- 核心修改结束 ---
 
 st.set_page_config(page_title="驻波演示", layout="wide")
 st.title("驻波（Standing Wave）演示")
